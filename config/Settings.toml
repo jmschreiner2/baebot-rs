@@ -1,0 +1,14 @@
+picture_types = [
+    "jpg",
+    "jpeg",
+    "gif",
+    "gfycat"
+]
+meme_subreddits = [
+    "dankmemes",
+    "memes_of_the_dank",
+    "memeeconomy",
+    "195",
+    "meme",
+    "memes"
+]
