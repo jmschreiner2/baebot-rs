@@ -1,2 +1,0 @@
-[workspace]
-members = ["baebot_discord", "baebot_models"]
