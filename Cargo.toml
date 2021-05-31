@@ -1,0 +1,33 @@
+[package]
+name = "baebot"
+version = "0.1.0"
+authors = ["Jacob Schreiner <jmschriner2@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+config="0.11.0"
+serde_derive = "^1.0.125"
+serde_json = "1.0.64"
+serde-xml-rs = "0.4.1"
+serde = "^1.0.125"
+reqwest = "0.11.3"
+url = "2.2.1"
+async-trait = "0.1.50"
+log = "0.4.14"
+simple_logger = "1.11.0"
+custom_error = "1.9.2"
+htmlescape = "0.3.1"
+futures = "0.3.15"
+lazy_static = "1.4.0"
+regex = "1.5.4"
+
+[dependencies.rand]
+version = "0.8.3"
+features = ["small_rng"]
+
+[dependencies.serenity]
+version="0.10"
+
+[dependencies.tokio]
+version = "1.5.0"
+features = ["macros", "rt-multi-thread"]
