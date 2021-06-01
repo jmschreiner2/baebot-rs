@@ -7,4 +7,5 @@ pipeline {
         sh 'docker build -t baebot .'
       }
     }
+  }
 }
