@@ -34,9 +34,10 @@ spec:
     stage('Publish') {
       container('docker') {
         withCredentials([string(credentialsId: 'dockerhub', variable: 'USERPASS')]) {
-        sh "docker login -u 'jmschreiner' -p '<$USERPASS>'"
-        sh "docker push jmschreiner/baebot:latest"
-        sh "docker push jmschreiner/baebot:$BUILD_NUMBER"
+          sh "docker login -u 'jmschreiner' -p '<$USERPASS>'"
+          sh "docker push jmschreiner/baebot:latest"
+          sh "docker push jmschreiner/baebot:$BUILD_NUMBER"
+        }
       }
     }
   }
