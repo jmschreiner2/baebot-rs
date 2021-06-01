@@ -2,7 +2,7 @@ podTemplate(yaml: """
 apiVersion: v1
 kind: Pod
 spec:
-  serviceAccountName: jenkins
+  serviceAccountName: jenkins-agent
   automountServiceAccountToken: true
   containers:
   - name: docker
