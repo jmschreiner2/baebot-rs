@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: baebot
+  labels:
+    app: baebot
+  namespace: baebot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: baebot
+  template:
+    metadata:
+      namespace: baebot
+      labels:
+        app: baebot
+    spec:
+      containers:
+      - name: baebot
+        image: jmschreiner/baebot:#{TAG}#
+        env:
+        - name: BAEBOT_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: discord
+              key: token
+      volumes:
+      - name: baebot-config
+        configMap:
+          name: baebot-config
+          optional: true
+          items:
+          - key: settings.toml
+            path: Settings.toml

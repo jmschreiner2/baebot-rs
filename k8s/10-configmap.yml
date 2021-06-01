@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: baebot-config
+  namespace: baebot
+data:
+  Settings.yml: |
+    [coom]
+    min_affinity = "0.01"
