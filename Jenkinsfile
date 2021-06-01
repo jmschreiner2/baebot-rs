@@ -14,7 +14,7 @@ spec:
   volumes:
   - name: dockersock
     hostPath:
-      path: /var/run/docker/sock
+      path: /var/run/docker.sock
 """) {
   node(POD_LABEL) {
     stage('Build') {
