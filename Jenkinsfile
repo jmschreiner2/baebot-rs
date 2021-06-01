@@ -1,10 +1,23 @@
-podTemplate(containers: [
-  containerTemplate(name: 'docker', image: 'docker', ttyEnabled: true)
-]) {
+podTemplate(yaml: """
+apiVersion: v1
+kind: Pod
+spec:
+  containers:
+  - name: docker
+    image: docker
+    command: ['cat']
+    tty: true
+    volumeMounts:
+    - name: dockersock
+      mountPath: /var/run/docker.sock
+  volumes:
+  - name: dockersock
+    hostPath:
+      path: /var/run/docker/sock
+""") {
   node(POD_LABEL) {
     stage('Build') {
       container('agent') {
-        sh "echo 'hello from $POD_CONTAINER'"
         sh "docker build -t baebot ."
       }
     }
