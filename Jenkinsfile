@@ -66,7 +66,7 @@ spec:
             )
           ]
         )
-        sh "find ./k8s -type f -exec kubectl apply -f {} \;"
+        sh "find ./k8s -type f -exec kubectl apply -f {} \\;"
       }
     }
   }
