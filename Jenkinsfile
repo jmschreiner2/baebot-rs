@@ -3,7 +3,10 @@ podTemplate(containers: [
 ]) {
   node(POD_LABEL) {
     stage('Build') {
-      sh 'docker build -t baebot .'
+      container('agent') {
+        sh "echo hellow from $POD_CONTAINER"
+        sh "docker build -t baebot ."
+      }
     }
   }
 }
