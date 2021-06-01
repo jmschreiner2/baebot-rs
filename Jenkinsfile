@@ -43,7 +43,7 @@ spec:
 
     stage('Deploy') {
       container('kubectl') {
-        variableReplace(
+        variablesReplace(
           configs: [
             variablesReplaceConfig(
               configs: [
