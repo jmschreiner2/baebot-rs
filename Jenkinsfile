@@ -18,7 +18,7 @@ spec:
 """) {
   node(POD_LABEL) {
     stage('Build') {
-      git scm
+      checkout scm
       container('docker') {
         sh "docker build -t baebot ."
       }
