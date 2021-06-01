@@ -23,5 +23,21 @@ spec:
         sh "docker build -t baebot ."
       }
     }
+
+    stage('Tag') {
+      container('docker') {
+        sh "docker tag baebot jmschreiner/baebot:latest"
+        sh "docker tag baebot jmschreiner/baebot:$BUILD_NUMBER"
+      }
+    }
+
+    stage('Publish') {
+      container('docker') {
+        withCredentials([string(credentialsId: 'dockerhub', variable: 'USERPASS')]) {
+        sh "docker login -u 'jmschreiner' -p '<$USERPASS>'"
+        sh "docker push jmschreiner/baebot:latest"
+        sh "docker push jmschreiner/baebot:$BUILD_NUMBER"
+      }
+    }
   }
 }
