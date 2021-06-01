@@ -5,7 +5,8 @@ spec:
   containers:
   - name: docker
     image: docker
-    command: ['cat']
+    command: ['sleep']
+    args: ['99d']
     tty: true
     volumeMounts:
     - name: dockersock
