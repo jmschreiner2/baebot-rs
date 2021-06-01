@@ -40,5 +40,30 @@ spec:
         }
       }
     }
+
+    stage('Deploy') {
+      container('kubectl') {
+        variableReplace(
+          configs: [
+            variablesReplaceConfig(
+              configs: [
+                variablesReplaceItemConfig(
+                  name: 'TAG',
+                  value: '$BUILD_NUMBER'
+                )
+              ],
+              fileEncoding: 'UTF-8',
+              filePath: 'k8s/20-deployment.yml',
+              variablesPrefix: '#{',
+              variablesSuffix: '}#'
+            )
+          ]
+        )
+        withCredentials([kubeconfigContent(credentialsId: 'kubeconfig', variable: 'KUBECONFIG_CONTENT')]) {
+          sh '''echo "$KUBECONFIG_CONTENT" > /.kube/config
+                ls ./k8s | sort | xargs kubectl apply -f'''
+        }
+      }
+    }
   }
 }
