@@ -2,6 +2,8 @@ podTemplate(yaml: """
 apiVersion: v1
 kind: Pod
 spec:
+  serviceAccountName: jenkins
+  automountServiceAccountToken: true
   containers:
   - name: docker
     image: docker
@@ -15,7 +17,6 @@ spec:
     image: bitnami/kubectl
     command: ['sleep']
     args: ['99d']
-    tty: true
   volumes:
   - name: dockersock
     hostPath:
@@ -64,10 +65,7 @@ spec:
             )
           ]
         )
-        withCredentials([kubeconfigContent(credentialsId: 'kubeconfig', variable: 'KUBECONFIG_CONTENT')]) {
-          sh '''echo "$KUBECONFIG_CONTENT" > /.kube/config
-                ls ./k8s | sort | xargs kubectl apply -f'''
-        }
+        sh "ls ./k8s | sort | xargs kubectl apply -f"
       }
     }
   }
