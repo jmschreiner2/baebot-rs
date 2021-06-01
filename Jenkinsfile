@@ -14,7 +14,7 @@ spec:
     - name: dockersock
       mountPath: /var/run/docker.sock
   - name: kubectl
-    image: bitnami/kubectl
+    image: roffe/kubectl
     command: ['sleep']
     args: ['99d']
     tty: true
