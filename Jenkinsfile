@@ -1,10 +1,10 @@
 podTemplate(containers: [
-  containerTemplate(name: 'agent', image: 'jenkins/agent:latest', ttyEnabled: true, command: 'sleep')
+  containerTemplate(name: 'docker', image: 'docker', ttyEnabled: true)
 ]) {
   node(POD_LABEL) {
     stage('Build') {
       container('agent') {
-        sh "echo hellow from $POD_CONTAINER"
+        sh "echo 'hello from $POD_CONTAINER'"
         sh "docker build -t baebot ."
       }
     }
